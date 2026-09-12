@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suryavision - Deep Learning Healthcare</title>
+    <!-- Append version to force cache bust so user sees the dark theme -->
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h2>🌿 Suryavision</h2>
+            <p>AI for Healthier Skin</p>
+        </div>
+        <div class="header-badges">
+            <span class="badge">Track 2: Segmentation & Classification</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <div class="upload-card">
+                <h3>Upload Dermoscopic Image</h3>
+                <div class="dropzone" id="dropzone">
+                    <div class="icon">↑</div>
+                    <p>Drag & drop an image here</p>
+                    <p>or</p>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Choose Image</button>
+                </div>
+                <div id="previewContainer" class="preview-container" style="display:none;">
+                    <img id="imagePreview" alt="Image Preview">
+                </div>
+                <button id="runAnalysisBtn" class="btn-action" disabled>Run Analysis</button>
+            </div>
+            
+            <div class="info-card">
+                <h4>Hackathon Notice</h4>
+                <p>This demo performs real-time inference using Standard U-Net and Self-Attention U-Net models.</p>
+                <div id="modelStatus">Models Status: Checking...</div>
+            </div>
+        </aside>
+
+        <section class="results-area">
+            <div class="header-title">
+                <h2>Skin Lesion Analysis</h2>
+                <p>Comparing Standard U-Net vs Self-Attention U-Net</p>
+            </div>
+
+            <div class="masks-grid">
+                <div class="card">
+                    <h4>Original Image</h4>
+                    <img id="resOriginal" class="result-img" src="placeholder.png" alt="Original">
+                </div>
+                <div class="card">
+                    <h4>Standard U-Net</h4>
+                    <img id="resUnet" class="result-img" src="placeholder.png" alt="U-Net Mask">
+                </div>
+                <div class="card">
+                    <h4>Self-Attention U-Net</h4>
+                    <img id="resSAUnet" class="result-img" src="placeholder.png" alt="SA U-Net Mask">
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="card metric-card">
+                    <h4>Disease Classification</h4>
+                    <div class="class-result" id="classResult">Waiting for input...</div>
+                    <p class="subtitle">Using Lesion-Cropped CNN</p>
+                </div>
+                <div class="card metric-card">
+                    <h4>Model Benchmark</h4>
+                    <div class="benchmark-stats">
+                        <div class="stat">
+                            <span>U-Net Dice</span>
+                            <strong id="bmUnetDice">--</strong>
+                        </div>
+                        <div class="stat">
+                            <span>SA U-Net Dice</span>
+                            <strong id="bmSAUnetDice">--</strong>
+                        </div>
+                    </div>
+                    <p class="subtitle">Evaluated on Test Split</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Append version to force cache bust so user sees the dark theme JS -->
+    <script src="script.js?v=2"></script>
+</body>
+</html>
